@@ -1,0 +1,11 @@
+.container {
+  text-align: center;
+}
+
+button {
+  width: 200px;
+  height: 40px;
+  background-color: blue;
+  border-radius: 15px;
+  color: white;
+}

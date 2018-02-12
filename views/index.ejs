@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title></title>
+    <link rel='stylesheet' href='style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // this triggers the connection event in our server!
+            var socket = io.connect();
+            // we'll write all the socket stuff after the above line!
+            $('button').click(function () {
+                socket.emit('button_clicked', { reason: 'because I want to learn about sockets!' });
+            });
+
+            socket.on('server_response', function (data) {
+                var time = "times"
+                if (data.response < 2) {
+                    time = "time"
+                }
+                var text = "The button has been pressed " + data.response + " " + time
+                console.log(text);
+                $("#header").html(text);
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="header">The button has been pressed 0 times</h1>
+        <h4>Push the button to update account</h4>
+        <button>Push the epic button</button>
+    </div>
+</body>
+
+</html>
